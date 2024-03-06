@@ -1,6 +1,6 @@
 # data-brewery-pipeline
 
-Data pipeline consuming data from the API (<>), transforming and persisting it into a data lake following the medallion architecture with three layers: raw data, curated data partitioned by location, and an analytical aggregated layer.
+Data pipeline consuming data from the API (<https://api.openbrewerydb.org/breweries>), transforming and persisting it into a data lake following the medallion architecture with three layers: raw data, curated data partitioned by location, and an analytical aggregated layer.
 
 As is, the pipeline can be implemented in Google Cloud Plataform, using GCP Storage, Dataproc and Composer (V2) services (Airflow). 
 
