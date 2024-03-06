@@ -2,7 +2,7 @@
 
 Data pipeline consuming data from the API (<https://api.openbrewerydb.org/breweries>), transforming and persisting it into a data lake following the medallion architecture with three layers: raw data, curated data partitioned by location, and an analytical aggregated layer.
 
-As is, the pipeline can be implemented in Google Cloud Plataform, using GCP Storage, Dataproc and Composer (V2) services (Airflow). 
+As is, the pipeline can be implemented in Google Cloud Plataform, using GCP Storage, Dataproc and Composer V2 (orchestration service built on Apache Airflow) services. 
 
 Using the same GCP project for all the services, the steps for implementation:
 
