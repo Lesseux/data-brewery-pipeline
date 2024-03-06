@@ -6,6 +6,11 @@ import json
 
 
 def create_spark_session():
+    """
+    Creates spark session
+
+    :returns spark instance
+    """
     spark = SparkSession.builder \
         .master("yarn") \
         .appName('task-1') \
@@ -16,6 +21,8 @@ def create_spark_session():
 def get_data():
     """
     Retrieves data from the API: https://api.openbrewerydb.org/breweries
+
+    Returns data (raw_data, str) and date_request (UTC, srt, format: YYYYMMDD_hhmmss)
     """
 
     response = requests.get("https://api.openbrewerydb.org/breweries")
@@ -52,6 +59,10 @@ def create_raw_data_layer(spark, data, date_request, path):
 
 def create_tabular_layer(spark, data, date_request, path):
     """
+    Reads raw data from data lake layer 1, transforms to tabular form.
+
+    The resulting table is written in parquet format (partitioned by location: Country_State)
+     into the directory given by the path/date_request=YYYYMMDD_hhmmss.
     """
 
     json_data = json.loads(data)
@@ -110,6 +121,11 @@ def create_tabular_layer(spark, data, date_request, path):
 
 def create_analytical_layer(spark, df_last_request, date_request, path):
     """
+    Reads tabular data from data lake layer 2, transforms to aggregated form.
+
+    The resulting table has total of breweries aggregated by location distinguishing different types.
+
+    The resulting table is written in parquet format into the directory given by the path/date_request=YYYYMMDD_hhmmss.
     """
 
     df_last_request.registerTempTable('df_last_request')
