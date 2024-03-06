@@ -14,6 +14,6 @@ Using the same GCP project for all the services, the steps for implementation:
 
 2- Create a Composer V2 enviroment and upload the dag code (dag_v3.py) to the dag folder (automatically generated in the enviroment).
 
-3- The pipeline should runs in about 10 minutes using the original dataproc cluster and compose enviroment configurations.  
+3- The pipeline should run in about 10 minutes using the original dataproc cluster configurations and a standar small Composer V2 enviroment.  
 
 More details in https://github.com/Lesseux/data-brewery-pipeline/wiki
